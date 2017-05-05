@@ -12,7 +12,7 @@ RUN apt-get -y install libreadline-dev
 RUN git clone https://github.com/nfc-tools/libnfc.git
 RUN git clone https://github.com/4ZM/mfterm.git
 WORKDIR /libnfc
-RUN sed "s/allow_intrusive_scan = false/allow_intrusive_scan = true/" -i libnfc/nfc-internal.c
+#RUN sed "s/allow_intrusive_scan = false/allow_intrusive_scan = true/" -i libnfc/nfc-internal.c
 RUN autoreconf -vis
 RUN ./configure --with-drivers=pn532_uart
 RUN make
@@ -24,3 +24,4 @@ RUN ./configure
 RUN make
 RUN make install
 WORKDIR /
+ENV LIBNFC_INTRUSIVE_SCAN=true
